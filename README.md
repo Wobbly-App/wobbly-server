@@ -1,4 +1,4 @@
-# Wobbly
+# Wobbly: Elixir backend
 
 To start your Phoenix server:
 

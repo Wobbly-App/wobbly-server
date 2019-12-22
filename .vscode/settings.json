@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "wobbly_dev",
+            "dialect": "PostgreSQL",
+            "name": "Docker",
+            "password": "postgres",
+            "port": 5432,
+            "server": "localhost",
+            "username": "postgres"
+        }
+    ]
+}

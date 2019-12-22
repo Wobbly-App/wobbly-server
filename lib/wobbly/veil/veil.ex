@@ -9,6 +9,7 @@ defmodule Wobbly.Veil do
 
   # These are only used to sign request/session tokens that are saved in the database and
   # not sent to users.
+  # TODO: must be environment variables
   @request_salt "ink8S8TjVvDsrEwZNOwDXGBqHYoUL6QwLVOOSm+7ezkunQ=="
   @session_salt "Da7enKE5RxV9Hw8A7Yi1JzIx2pAeorqnqxzfsCOn/ndi1hU="
 

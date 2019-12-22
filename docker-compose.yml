@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:12.1
+    ports:
+      - "5432:5432"
+    environment:
+      - DB_USER
+      - DB_PASS
+      - DB_NAME
+    volumes:
+      - pgdata:/var/lib/postgresql
+volumes:
+  pgdata:

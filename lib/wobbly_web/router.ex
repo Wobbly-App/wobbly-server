@@ -25,6 +25,7 @@ defmodule WobblyWeb.Router do
   # Add routes that require authentication in this block.
   scope "/api/v1", WobblyWeb do
     pipe_through([:api, WobblyWeb.Plugs.Veil.Authenticate])
+    resources "/groups", GroupController, except: [:new, :edit, :delete]
   end
 
   scope "/" do

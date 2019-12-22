@@ -1,5 +1,5 @@
 defmodule WobblyWeb.ApiSpec do
-  alias OpenApiSpex.{OpenApi, Server, Info, Paths}
+  alias OpenApiSpex.{Components, OpenApi, Server, Info, Paths, SecurityScheme}
   alias WobblyWeb.{Endpoint, Router}
   @behaviour OpenApi
 
@@ -15,7 +15,19 @@ defmodule WobblyWeb.ApiSpec do
         version: Application.spec(:wobbly, :vsn) |> List.to_string()
       },
       # populate the paths from a phoenix router
-      paths: Paths.from_router(Router)
+      paths: Paths.from_router(Router),
+      components: %Components{
+        securitySchemes: %{
+          apiKeyAuth: %SecurityScheme{
+            type: "apiKey",
+            in: "header",
+            name: "session_unique_id"
+          }
+        }
+      },
+      security: %{
+        apiKeyAuth: []
+      }
     }
     # discover request/response schemas from path specs
     |> OpenApiSpex.resolve_schema_modules()

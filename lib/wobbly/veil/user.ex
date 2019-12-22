@@ -5,6 +5,7 @@ defmodule Wobbly.Veil.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Wobbly.Veil.{Request, Session}
+  alias Wobbly.Groups.Group
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -14,6 +15,8 @@ defmodule Wobbly.Veil.User do
 
     has_many(:requests, Request)
     has_many(:sessions, Session)
+
+    many_to_many :groups, Group, join_through: :users_groups
 
     timestamps()
   end

@@ -6,7 +6,7 @@ defmodule WobblyWeb.Schemas do
 
     OpenApiSpex.schema(%{
       title: "AuthResponse",
-      description: "Response when signinh in/up",
+      description: "Response when signing in/up",
       type: :object,
       properties: %{
         ok: %Schema{type: :boolean, description: "true if successful"}
@@ -76,7 +76,7 @@ defmodule WobblyWeb.Schemas do
       },
       required: [:session_id],
       example: %{
-        session_id: "ugh"
+        session_id: "QUOGYC2PGPH56ETRFLCFM4I5RDJ6NMCJX4KRCVFXWYWTL75YRZOQ===="
       }
     })
   end

@@ -27,4 +27,8 @@ wobbly-*.tar
 # this depending on your deployment strategy.
 /priv/static/
 
+# ElixirLS files
 .elixir_ls
+
+# The generated OpenAPI spec
+spec.json

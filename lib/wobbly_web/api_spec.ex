@@ -12,8 +12,7 @@ defmodule WobblyWeb.ApiSpec do
       ],
       info: %Info{
         title: "Wobbly",
-        description: Application.spec(:my_app, :description),
-        version: Application.spec(:my_app, :vsn)
+        version: Application.spec(:wobbly, :vsn) |> List.to_string()
       },
       # populate the paths from a phoenix router
       paths: Paths.from_router(Router)

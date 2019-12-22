@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :wobbly,
-  ecto_repos: [Wobbly.Repo]
+  ecto_repos: [Wobbly.Repo],
+  env: Mix.env()
 
 # Configures the endpoint
 config :wobbly, WobblyWeb.Endpoint,
@@ -28,3 +29,31 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+# -- Veil Configuration    Don't remove this line
+config :veil,
+  site_name: "Wobbly",
+  email_from_name: "Wobbly",
+  email_from_address: "noreply@wobbly.app",
+  # How long should emailed sign-in links be valid for?
+  sign_in_link_expiry: 3_600,
+  # How long should sessions be valid for?
+  session_expiry: 86_400 * 30,
+  # How often should existing sessions be extended to session_expiry
+  refresh_expiry_interval: 86_400,
+  # How many recent sessions to keep in cache (to reduce database operations)
+  sessions_cache_limit: 250,
+  # How many recent users to keep in cache
+  users_cache_limit: 100
+
+config :veil, Veil.Scheduler,
+  jobs: [
+    # Runs every midnight to delete all expired requests and sessions
+    {"@daily", {Wobbly.Veil.Clean, :expired, []}}
+  ]
+
+config :veil, WobblyWeb.Veil.Mailer,
+  adapter: Swoosh.Adapters.Sendgrid,
+  api_key: "***REMOVED***"
+
+# -- End Veil Configuration

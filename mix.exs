@@ -41,7 +41,8 @@ defmodule Wobbly.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:open_api_spex, "~> 3.5"}
+      {:open_api_spex, "~> 3.5"},
+      {:veil, "~> 0.2.3"}
     ]
   end
 

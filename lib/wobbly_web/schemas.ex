@@ -1,50 +1,82 @@
 defmodule WobblyWeb.Schemas do
   alias OpenApiSpex.Schema
 
-  defmodule User do
+  defmodule AuthResponse do
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
-      title: "User",
-      description: "A user of the app",
+      title: "AuthResponse",
+      description: "Response when signinh in/up",
       type: :object,
       properties: %{
-        id: %Schema{type: :uuid, description: "User ID"},
-        email: %Schema{type: :string, description: "Email address", format: :email},
-        inserted_at: %Schema{
-          type: :string,
-          description: "Creation timestamp",
-          format: :"date-time"
-        },
-        updated_at: %Schema{type: :string, description: "Update timestamp", format: :"date-time"}
-      },
-      required: [:email],
-      example: %{
-        "id" => 123,
-        "email" => "joe@gmail.com",
-        "inserted_at" => "2017-09-12T12:34:55Z",
-        "updated_at" => "2017-09-13T10:11:12Z"
+        ok: %Schema{type: :boolean, description: "true if successful"}
       }
     })
   end
 
-  defmodule UserResponse do
+  defmodule Session do
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
-      title: "UserResponse",
-      description: "Response schema for single user",
+      title: "Session",
+      description: "A session ID",
       type: :object,
       properties: %{
-        data: User
+        session_id: %Schema{type: :string, description: "Session ID"}
       },
       example: %{
-        "data" => %{
-          "id" => 123,
-          "email" => "joe@gmail.com",
-          "inserted_at" => "2017-09-12T12:34:55Z",
-          "updated_at" => "2017-09-13T10:11:12Z"
-        }
+        session_id: "QUOGYC2PGPH56ETRFLCFM4I5RDJ6NMCJX4KRCVFXWYWTL75YRZOQ===="
+      }
+    })
+  end
+
+  defmodule UserCreate do
+    require OpenApiSpex
+
+    OpenApiSpex.schema(%{
+      title: "UserCreate",
+      description: "POST body for signing in/up",
+      type: :object,
+      properties: %{
+        email: %Schema{type: :string, description: "Email address", format: :email}
+      },
+      required: [:email],
+      example: %{
+        email: "demo@domain.com"
+      }
+    })
+  end
+
+  defmodule SessionCreate do
+    require OpenApiSpex
+
+    OpenApiSpex.schema(%{
+      title: "SessionCreate",
+      description: "POST body for creating a session",
+      type: :object,
+      properties: %{
+        request_id: %Schema{type: :string, description: "Session request ID"}
+      },
+      required: [:request_id],
+      example: %{
+        request_id: "XLD5KU3O7YIFXRMHDECCZU5G3XAIJKSQ53K224X4DDIPFTGT6JLQ===="
+      }
+    })
+  end
+
+  defmodule SessionDelete do
+    require OpenApiSpex
+
+    OpenApiSpex.schema(%{
+      title: "SessionDelete",
+      description: "POST body for deleting a session",
+      type: :object,
+      properties: %{
+        session_id: %Schema{type: :string, description: "Session unique ID"}
+      },
+      required: [:session_id],
+      example: %{
+        session_id: "ugh"
       }
     })
   end

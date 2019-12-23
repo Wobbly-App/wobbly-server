@@ -32,3 +32,6 @@ wobbly-*.tar
 
 # The generated OpenAPI spec
 spec.json
+
+# Secrets
+.env

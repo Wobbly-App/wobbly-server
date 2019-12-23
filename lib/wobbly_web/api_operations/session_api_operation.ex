@@ -1,6 +1,6 @@
 defmodule WobblyWeb.ApiOperations.SessionApiOperation do
   alias OpenApiSpex.Operation
-  alias WobblyWeb.Schemas.{AuthResponse, Session, SessionCreate, SessionDelete}
+  alias WobblyWeb.Schemas.{AuthResponse, Session, SessionCreate}
 
   @spec open_api_operation(atom) :: Operation.t()
   def open_api_operation(action) do
@@ -25,7 +25,6 @@ defmodule WobblyWeb.ApiOperations.SessionApiOperation do
     %Operation{
       tags: ["users"],
       summary: "Delete a session (i.e. sign out)",
-      requestBody: Operation.request_body("JSON body", "application/json", SessionDelete),
       responses: %{
         200 => ok_response()
       }

@@ -5,6 +5,7 @@ defmodule WobblyWeb.FallbackController do
   See `Phoenix.Controller.action_fallback/1` for more details.
   """
   use WobblyWeb, :controller
+  require Logger
 
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
@@ -18,5 +19,14 @@ defmodule WobblyWeb.FallbackController do
     |> put_status(:not_found)
     |> put_view(WobblyWeb.ErrorView)
     |> render(:"404")
+  end
+
+  def call(conn, {:error, error}) do
+    Logger.error(inspect(error))
+
+    conn
+    |> put_status(:internal_server_error)
+    |> put_view(WobblyWeb.ErrorView)
+    |> render(:"500")
   end
 end

@@ -12,7 +12,6 @@ defmodule WobblyWeb.Veil.UserController do
   If needed, creates a new user, otherwise finds the existing one.
   Creates a new request and emails the unique id to the user.
   """
-
   def create(conn, %{"email" => email}) when not is_nil(email) do
     if user = Veil.get_user_by_email(email) do
       sign_and_email(conn, user)

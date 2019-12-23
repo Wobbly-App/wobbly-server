@@ -2,7 +2,6 @@ defmodule WobblyWeb.ApiSpec do
   alias OpenApiSpex.{Components, OpenApi, Server, Info, Paths, SecurityScheme}
   alias WobblyWeb.{Endpoint, Router}
   @behaviour OpenApi
-
   @impl OpenApi
   def spec do
     %OpenApi{
@@ -25,9 +24,9 @@ defmodule WobblyWeb.ApiSpec do
           }
         }
       },
-      security: %{
-        apiKeyAuth: []
-      }
+      security: [
+        %{apiKeyAuth: []}
+      ]
     }
     # discover request/response schemas from path specs
     |> OpenApiSpex.resolve_schema_modules()

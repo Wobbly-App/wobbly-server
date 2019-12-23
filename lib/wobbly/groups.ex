@@ -5,9 +5,9 @@ defmodule Wobbly.Groups do
 
   import Ecto.Query, warn: false
   alias Wobbly.Repo
-
-  alias Wobbly.Groups.Group
+  alias Wobbly.Groups.{Group, UserGroup}
   alias Wobbly.Veil.User
+  require Logger
 
   @doc """
   Returns the list of groups of the current user.
@@ -51,7 +51,8 @@ defmodule Wobbly.Groups do
 
   """
   def create_group(attrs \\ %{}, %User{} = user) do
-    with {:ok, group} <- create_group_only(attrs), {:ok, _user} <- add_member(group, user) do
+    with {:ok, group} <- create_group_only(attrs),
+         {:ok, _user_group} <- add_member(group, user) do
       {:ok, group}
     else
       err -> {:error, err}
@@ -112,10 +113,14 @@ defmodule Wobbly.Groups do
   end
 
   def add_member(%Group{} = group, %User{} = user) do
-    user
-    |> Repo.preload(:groups)
-    |> Ecto.Changeset.change()
-    |> Ecto.Changeset.put_assoc(:groups, [group])
-    |> Repo.update()
+    %UserGroup{
+      user_id: user.id,
+      group_id: group.id
+    }
+    |> (fn i ->
+          Logger.info(inspect(i))
+          i
+        end).()
+    |> Repo.insert(on_conflict: :nothing)
   end
 end

@@ -1,6 +1,6 @@
 defmodule WobblyWeb.ApiOperations.GroupApiOperation do
   alias OpenApiSpex.Operation
-  alias WobblyWeb.Schemas.{Group, GroupCreate, GroupUpdate, UUID}
+  alias WobblyWeb.Schemas.{Group, GroupNameAndDescription}
 
   @spec open_api_operation(atom) :: Operation.t()
   def open_api_operation(action) do
@@ -24,7 +24,8 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
     %Operation{
       tags: ["groups"],
       summary: "Create a new group",
-      requestBody: Operation.request_body("JSON body", "application/json", GroupCreate),
+      requestBody:
+        Operation.request_body("JSON body", "application/json", GroupNameAndDescription),
       responses: %{
         200 => Operation.response("The new group", "application/json", Group)
       }
@@ -35,8 +36,13 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
   def show_operation() do
     %Operation{
       tags: ["groups"],
-      summary: "Create a new group",
-      requestBody: Operation.request_body("JSON body", "application/json", UUID),
+      summary: "Get group details",
+      parameters: [
+        Operation.parameter(:id, :path, :string, "Group ID",
+          example: "d1b42b3b-8dc6-4c9b-9a70-03db18a0ac78",
+          required: true
+        )
+      ],
       responses: %{
         200 => Operation.response("The group", "application/json", Group)
       }
@@ -48,7 +54,14 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
     %Operation{
       tags: ["groups"],
       summary: "Update a group (that you are a member of)",
-      requestBody: Operation.request_body("JSON body", "application/json", GroupUpdate),
+      parameters: [
+        Operation.parameter(:id, :path, :string, "Group ID",
+          example: "d1b42b3b-8dc6-4c9b-9a70-03db18a0ac78",
+          required: true
+        )
+      ],
+      requestBody:
+        Operation.request_body("JSON body", "application/json", GroupNameAndDescription),
       responses: %{
         200 => Operation.response("The group", "application/json", Group)
       }

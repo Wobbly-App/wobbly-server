@@ -1,9 +1,20 @@
 {
     "sqltools.connections": [
         {
+            "database": "wobbly_test",
+            "dialect": "PostgreSQL",
+            "isActive": true,
+            "isConnected": true,
+            "name": "Wobbly test",
+            "password": "postgres",
+            "port": 5432,
+            "server": "localhost",
+            "username": "postgres"
+        },
+        {
             "database": "wobbly_dev",
             "dialect": "PostgreSQL",
-            "name": "Docker",
+            "name": "Wobbly dev",
             "password": "postgres",
             "port": 5432,
             "server": "localhost",

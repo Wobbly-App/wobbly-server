@@ -106,18 +106,61 @@ defmodule WobblyWeb.Schemas do
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
-      title: "GroupCreate",
-      description: "POST body for creating a group",
+      title: "Group",
+      description: "Data for creating a new group",
       type: :object,
       properties: %{
-        group: GroupNameAndDescription
+        group: %Schema{anyOf: [Group]}
       },
-      required: [:name],
       example: %{
         group: %{
           name: "Bike Couriers Edinburgh",
           description: "A group for UberEats and Deliveroo couriers."
         }
+      }
+    })
+  end
+
+  defmodule GroupResponse do
+    require OpenApiSpex
+
+    OpenApiSpex.schema(%{
+      title: "Group",
+      description: "A single Wobbly group",
+      type: :object,
+      properties: %{
+        data: %Schema{anyOf: [Group]}
+      },
+      example: %{
+        data: [
+          %{
+            id: "f6a77221-56a6-45e7-bebf-b15ac97bd15c",
+            name: "Bike Couriers Edinburgh",
+            description: "A group for UberEats and Deliveroo couriers."
+          }
+        ]
+      }
+    })
+  end
+
+  defmodule GroupsResponse do
+    require OpenApiSpex
+
+    OpenApiSpex.schema(%{
+      title: "Group",
+      description: "A list of Wobbly groups",
+      type: :object,
+      properties: %{
+        data: %Schema{description: "List of groups", type: :array, items: Group}
+      },
+      example: %{
+        data: [
+          %{
+            id: "f6a77221-56a6-45e7-bebf-b15ac97bd15c",
+            name: "Bike Couriers Edinburgh",
+            description: "A group for UberEats and Deliveroo couriers."
+          }
+        ]
       }
     })
   end

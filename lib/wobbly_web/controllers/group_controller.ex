@@ -8,7 +8,7 @@ defmodule WobblyWeb.GroupController do
   defdelegate open_api_operation(action), to: WobblyWeb.ApiOperations.GroupApiOperation
 
   def index(conn, _params) do
-    groups = Groups.list_groups(conn.assigns.veil_user)
+    groups = Groups.list_user_groups(conn.assigns.veil_user)
     render(conn, "index.json", groups: groups)
   end
 

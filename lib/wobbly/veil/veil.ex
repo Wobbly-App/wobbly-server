@@ -41,6 +41,13 @@ defmodule Wobbly.Veil do
   end
 
   @doc """
+  Deletes the given user
+  """
+  def delete_user(%User{} = user) do
+    Repo.delete(user)
+  end
+
+  @doc """
   Sets verified flag on the user associated with the user_id given, if needed
   """
   def verify_user(%User{} = user) do

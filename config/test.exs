@@ -16,3 +16,9 @@ config :wobbly, WobblyWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :veil,
+  # How many recent sessions to keep in cache (to reduce database operations)
+  sessions_cache_limit: 0,
+  # How many recent users to keep in cache
+  users_cache_limit: 0

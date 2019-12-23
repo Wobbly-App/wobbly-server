@@ -10,7 +10,9 @@ defmodule Wobbly.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test, "coveralls.json": :test]
     ]
   end
 
@@ -42,7 +44,8 @@ defmodule Wobbly.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:open_api_spex, "~> 3.5"},
-      {:veil, "~> 0.2.3"}
+      {:veil, "~> 0.2.3"},
+      {:excoveralls, "~> 0.12.1", only: :test}
     ]
   end
 

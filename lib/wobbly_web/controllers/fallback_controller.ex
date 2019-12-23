@@ -21,12 +21,12 @@ defmodule WobblyWeb.FallbackController do
     |> render(:"404")
   end
 
-  def call(conn, {:error, error}) do
-    Logger.error(inspect(error))
+  # def call(conn, {:error, error}) do
+  #   Logger.error(inspect(error))
 
-    conn
-    |> put_status(:internal_server_error)
-    |> put_view(WobblyWeb.ErrorView)
-    |> render(:"500")
-  end
+  #   conn
+  #   |> put_status(:internal_server_error)
+  #   |> put_view(WobblyWeb.ErrorView)
+  #   |> render(:"500")
+  # end
 end

@@ -13,6 +13,7 @@ defmodule WobblyWeb.Plugs.Veil.Authenticate do
       conn
       |> Phoenix.Controller.put_view(WobblyWeb.Veil.ErrorView)
       |> Phoenix.Controller.render(:no_permission)
+      |> Plug.Conn.halt()
     end
   end
 end

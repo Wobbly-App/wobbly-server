@@ -18,7 +18,14 @@ defmodule Wobbly.Groups do
       [%Group{}, ...]
 
   """
-  def list_groups(%User{} = user) do
+  def list_groups() do
+    Repo.all(Group)
+  end
+
+  @doc """
+  Returns a list of groups of the current user.
+  """
+  def list_user_groups(%User{} = user) do
     Repo.all(Ecto.assoc(user, :groups))
   end
 
@@ -55,7 +62,7 @@ defmodule Wobbly.Groups do
          {:ok, _user_group} <- add_member(group, user) do
       {:ok, group}
     else
-      err -> {:error, err}
+      err -> err
     end
   end
 

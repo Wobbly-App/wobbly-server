@@ -1,6 +1,13 @@
 defmodule WobblyWeb.ApiOperations.GroupApiOperation do
   alias OpenApiSpex.Operation
-  alias WobblyWeb.Schemas.{Group, GroupNameAndDescription}
+
+  alias WobblyWeb.Schemas.{
+    Group,
+    GroupCreate,
+    GroupResponse,
+    GroupsResponse,
+    GroupNameAndDescription
+  }
 
   @spec open_api_operation(atom) :: Operation.t()
   def open_api_operation(action) do
@@ -14,7 +21,7 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
       tags: ["groups"],
       summary: "View the current user's groups",
       responses: %{
-        200 => Operation.response("List of groups", "application/json", Group)
+        200 => Operation.response("List of groups", "application/json", GroupsResponse)
       }
     }
   end
@@ -24,10 +31,9 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
     %Operation{
       tags: ["groups"],
       summary: "Create a new group",
-      requestBody:
-        Operation.request_body("JSON body", "application/json", GroupNameAndDescription),
+      requestBody: Operation.request_body("JSON body", "application/json", GroupCreate),
       responses: %{
-        200 => Operation.response("The new group", "application/json", Group)
+        200 => Operation.response("The new group", "application/json", GroupResponse)
       }
     }
   end

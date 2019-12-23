@@ -52,8 +52,11 @@ config :veil, Veil.Scheduler,
     {"@daily", {Wobbly.Veil.Clean, :expired, []}}
   ]
 
+# Defined in config/prod.secret.exs, uses environment variable
+# SENDGRID_API_KEY
+# (not needed in dev, since emails aren't sent in this environment)
+# (instead, login URLs are logged to the console)
 config :veil, WobblyWeb.Veil.Mailer,
   adapter: Swoosh.Adapters.Sendgrid,
-  api_key: "***REMOVED***"
-
+  api_key: "foobar"
 # -- End Veil Configuration

@@ -1,5 +1,7 @@
 # Wobbly: Elixir backend
 
+[![codecov](https://codecov.io/gh/Wobbly-App/elixir-backend/branch/develop/graph/badge.svg)](https://codecov.io/gh/Wobbly-App/elixir-backend)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

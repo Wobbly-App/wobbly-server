@@ -30,8 +30,9 @@ wobbly-*.tar
 # ElixirLS files
 .elixir_ls
 
-# The generated OpenAPI spec
+# The generated OpenAPI spec and client
 spec.json
+client/
 
 # Secrets
 .env

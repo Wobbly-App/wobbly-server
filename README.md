@@ -2,6 +2,8 @@
 
 The backend server for [Wobbly](https://wobbly.app), written in the Phoenix framework.
 
+This serves a REST API. [A TypeScript client](https://www.npmjs.com/package/@wobbly/api-client) is automatically generated and published to NPM on new releases.
+
 * [Code of conduct](https://github.com/Wobbly-App/wobbly-frontend/blob/develop/CODE-OF-CONDUCT.md)
 * [Contributing guide](https://github.com/Wobbly-App/wobbly-frontend/blob/develop/CONTRIBUTING.md)
 

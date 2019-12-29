@@ -1,4 +1,4 @@
-# Wobbly Server [![Build Status](https://github.com/Wobbly-App/elixir-backend/workflows/Test/badge.svg?branch=master)](https://github.com/Wobbly-App/elixir-backend/actions?query=workflow%3ATest+branch%3Amaster) [![codecov](https://codecov.io/gh/Wobbly-App/elixir-backend/branch/master/graph/badge.svg)](https://codecov.io/gh/Wobbly-App/elixir-backend) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+# Wobbly Server [![Build Status](https://github.com/Wobbly-App/wobbly-server/workflows/Test/badge.svg?branch=master)](https://github.com/Wobbly-App/wobbly-server/actions?query=workflow%3ATest+branch%3Amaster) [![codecov](https://codecov.io/gh/Wobbly-App/wobbly-server/branch/master/graph/badge.svg)](https://codecov.io/gh/Wobbly-App/wobbly-server) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 The backend server for [Wobbly](https://wobbly.app), written in Elixir and the [Phoenix framework](http://www.phoenixframework.org/).
 

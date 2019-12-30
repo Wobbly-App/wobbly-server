@@ -16,11 +16,9 @@ defmodule WobblyWeb.Veil.UserController do
     if user = Veil.get_user_by_email(email) do
       sign_and_email(conn, user)
     else
-      with {:ok, user} <- Veil.create_user(email) do
-        sign_and_email(conn, user)
-      else
-        error ->
-          error
+      case Veil.create_user(email) do
+        {:ok, user} -> sign_and_email(conn, user)
+        error -> error
       end
     end
   end
@@ -29,10 +27,11 @@ defmodule WobblyWeb.Veil.UserController do
     case Application.get_env(:wobbly, :env) do
       # Don't send emails in dev -- just log the generated session URL
       :dev ->
-        with {:ok, request} <- Veil.create_request(conn, user) do
-          Logger.info(Veil.new_session_url(conn, request.unique_id))
-          render(conn, "ok.json")
-        else
+        case Veil.create_request(conn, user) do
+          {:ok, request} ->
+            Logger.info(Veil.new_session_url(conn, request.unique_id))
+            render(conn, "ok.json")
+
           error ->
             error
         end

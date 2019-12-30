@@ -18,7 +18,7 @@ defmodule Wobbly.Groups do
       [%Group{}, ...]
 
   """
-  def list_groups() do
+  def list_groups do
     Repo.all(Group)
   end
 

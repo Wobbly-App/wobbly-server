@@ -1,7 +1,11 @@
 defmodule WobblyWeb.Schemas do
+  @moduledoc """
+  Types/schemas for our OpenAPI schema.
+  """
   alias OpenApiSpex.Schema
 
   defmodule AuthResponse do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
@@ -15,6 +19,7 @@ defmodule WobblyWeb.Schemas do
   end
 
   defmodule Session do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
@@ -31,6 +36,7 @@ defmodule WobblyWeb.Schemas do
   end
 
   defmodule UserCreate do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
@@ -48,6 +54,7 @@ defmodule WobblyWeb.Schemas do
   end
 
   defmodule SessionCreate do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
@@ -65,6 +72,7 @@ defmodule WobblyWeb.Schemas do
   end
 
   defmodule GroupNameAndDescription do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
@@ -83,6 +91,7 @@ defmodule WobblyWeb.Schemas do
   end
 
   defmodule Group do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
@@ -103,6 +112,7 @@ defmodule WobblyWeb.Schemas do
   end
 
   defmodule GroupCreate do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
@@ -122,6 +132,7 @@ defmodule WobblyWeb.Schemas do
   end
 
   defmodule GroupResponse do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{
@@ -144,6 +155,7 @@ defmodule WobblyWeb.Schemas do
   end
 
   defmodule GroupsResponse do
+    @moduledoc false
     require OpenApiSpex
 
     OpenApiSpex.schema(%{

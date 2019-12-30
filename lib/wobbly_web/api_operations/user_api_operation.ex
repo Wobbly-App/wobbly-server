@@ -1,4 +1,7 @@
 defmodule WobblyWeb.ApiOperations.UserApiOperation do
+  @moduledoc """
+  User API operations for our OpenAPI schema.
+  """
   alias OpenApiSpex.Operation
   alias WobblyWeb.Schemas.{AuthResponse, UserCreate}
 
@@ -8,8 +11,8 @@ defmodule WobblyWeb.ApiOperations.UserApiOperation do
     apply(__MODULE__, operation, [])
   end
 
-  @spec create_operation() :: Operation.t()
-  def create_operation() do
+  @spec create_operation :: Operation.t()
+  def create_operation do
     %Operation{
       tags: ["users"],
       summary: "Sign up / in",

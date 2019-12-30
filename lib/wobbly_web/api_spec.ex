@@ -1,6 +1,10 @@
 defmodule WobblyWeb.ApiSpec do
-  alias OpenApiSpex.{Components, OpenApi, Server, Info, Paths, SecurityScheme}
+  @moduledoc """
+  General setup for our OpenAPI schema (uses the OpenApiSpex library).
+  """
+  alias OpenApiSpex.{Components, Info, OpenApi, Paths, SecurityScheme, Server}
   alias WobblyWeb.{Endpoint, Router}
+
   @behaviour OpenApi
   @impl OpenApi
   def spec do

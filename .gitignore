@@ -36,3 +36,6 @@ client/
 
 # Secrets
 .env
+
+# Sobelow
+.sobelow

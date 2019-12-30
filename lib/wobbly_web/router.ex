@@ -2,6 +2,15 @@ defmodule WobblyWeb.Router do
   use WobblyWeb, :router
   alias WobblyWeb.Veil
 
+  @csp """
+       default-src 'self' *.wobbly.app localhost;
+       font-src fonts.googleapis.com fonts.gstatic.com;
+       script-src 'unsafe-inline' cdnjs.cloudflare.com;
+       style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com fonts.googleapis.com fonts.gstatic.com;
+       img-src 'self' data:"
+       """
+       |> String.replace(~r/\r|\n/, "")
+
   pipeline :api do
     plug OpenApiSpex.Plug.PutApiSpec, module: WobblyWeb.ApiSpec
     plug :accepts, ["json"]
@@ -11,6 +20,10 @@ defmodule WobblyWeb.Router do
 
   pipeline :browser do
     plug :accepts, ["html"]
+
+    plug :put_secure_browser_headers, %{
+      "Content-Security-Policy" => @csp
+    }
   end
 
   scope "/api/v1" do

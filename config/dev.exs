@@ -55,3 +55,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :husky,
+  pre_commit: "mix format && mix credo --all --strict",
+  pre_push: "mix format --check-formatted && mix credo --all --strict && mix test"

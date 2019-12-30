@@ -1,4 +1,11 @@
 defmodule Wobbly.Release do
+  @moduledoc """
+  Used to run migrations in an Elixir release.
+  e.g.
+  $ _build/prod/rel/wobbly/bin/wobbly eval "Wobbly.Release.migrate"
+
+  See https://hexdocs.pm/phoenix/releases.html#ecto-migrations-and-custom-commands
+  """
   @app :wobbly
 
   def migrate do

@@ -1,4 +1,7 @@
 defmodule Wobbly.Groups.Group do
+  @moduledoc """
+  Group schema.
+  """
   use Ecto.Schema
   import Ecto.Changeset
   alias Wobbly.Groups.UserGroup

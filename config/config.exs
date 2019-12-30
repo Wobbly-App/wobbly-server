@@ -59,4 +59,5 @@ config :veil, Veil.Scheduler,
 config :veil, WobblyWeb.Veil.Mailer,
   adapter: Swoosh.Adapters.Sendgrid,
   api_key: "foobar"
+
 # -- End Veil Configuration

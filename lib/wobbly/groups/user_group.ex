@@ -1,4 +1,7 @@
 defmodule Wobbly.Groups.UserGroup do
+  @moduledoc """
+  Schema for the relation table for group membership.
+  """
   use Ecto.Schema
   import Ecto.Changeset
   alias Wobbly.Groups.Group

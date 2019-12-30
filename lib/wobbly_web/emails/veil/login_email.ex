@@ -1,4 +1,7 @@
 defmodule WobblyWeb.Veil.LoginEmail do
+  @moduledoc """
+  Functions related to authentication emails.
+  """
   use Phoenix.Swoosh, view: WobblyWeb.Veil.EmailView
 
   @doc """

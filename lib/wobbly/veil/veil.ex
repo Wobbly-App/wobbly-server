@@ -2,14 +2,16 @@ defmodule Wobbly.Veil do
   @moduledoc """
   Veil's main context
   """
-  alias Wobbly.Repo
-  alias Wobbly.Veil.{User, Request, Session}
-  alias WobblyWeb.Veil.{Mailer, LoginEmail}
+  alias Phoenix.{Controller, Token}
   alias Veil.{Cache, Secure}
+  alias Wobbly.Repo
+  alias Wobbly.Veil.{Request, Session, User}
+  alias WobblyWeb.Endpoint
+  alias WobblyWeb.Router.Helpers, as: RouterHelpers
+  alias WobblyWeb.Veil.{LoginEmail, Mailer}
 
   # These are only used to sign request/session tokens that are saved in the database and
   # not sent to users.
-  # TODO: must be environment variables
   @request_salt "ink8S8TjVvDsrEwZNOwDXGBqHYoUL6QwLVOOSm+7ezkunQ=="
   @session_salt "Da7enKE5RxV9Hw8A7Yi1JzIx2pAeorqnqxzfsCOn/ndi1hU="
 
@@ -59,17 +61,15 @@ defmodule Wobbly.Veil do
   end
 
   def verify_user(user_id) do
-    with {:ok, user} <- get_user(user_id) do
-      verify_user(user)
-    else
+    case get_user(user_id) do
+      {:ok, user} -> verify_user(user)
       error -> error
     end
   end
 
   def update_user(%User{} = user, attrs) do
-    with {:ok, user} <- do_update_user(user, attrs) do
-      {:ok, user}
-    else
+    case do_update_user(user, attrs) do
+      {:ok, user} -> {:ok, user}
       error -> error
     end
   end
@@ -90,18 +90,18 @@ defmodule Wobbly.Veil do
   end
 
   def new_session_url(conn, unique_id) do
-    cur_uri = Phoenix.Controller.endpoint_module(conn).struct_url()
+    cur_uri = Controller.endpoint_module(conn).struct_url()
 
-    cur_path = WobblyWeb.Router.Helpers.session_path(conn, :create, request_id: unique_id)
+    cur_path = RouterHelpers.session_path(conn, :create, request_id: unique_id)
 
-    WobblyWeb.Router.Helpers.url(cur_uri) <> cur_path
+    RouterHelpers.url(cur_uri) <> cur_path
   end
 
   @doc """
   Creates a new login request for the user provided
   """
   def create_request(conn, %User{} = user) do
-    phoenix_token = Phoenix.Token.sign(conn, @request_salt, user.id)
+    phoenix_token = Token.sign(conn, @request_salt, user.id)
     unique_id = Secure.generate_unique_id(conn)
 
     %Request{}
@@ -128,11 +128,11 @@ defmodule Wobbly.Veil do
   Verifies that the phoenix_token inside the request/session is valid and has not expired
   """
   def verify(%Session{} = session) do
-    verify(WobblyWeb.Endpoint, session)
+    verify(Endpoint, session)
   end
 
   def verify(%Request{} = request) do
-    verify(WobblyWeb.Endpoint, request)
+    verify(Endpoint, request)
   end
 
   def verify(conn, %Session{phoenix_token: phoenix_token}) do
@@ -168,19 +168,21 @@ defmodule Wobbly.Veil do
   def get_session(nil), do: {:error, :no_permission}
 
   def get_session(unique_id) do
-    with {:ok, {:ok, session}} <- Cache.get_and_refresh(:veil_sessions, unique_id) do
-      unless is_nil(session) do
-        {:ok, session}
-      else
-        if session = Repo.get_by(Session, unique_id: unique_id) do
-          Cachex.put(:veil_sessions, unique_id, session)
-          {:ok, session}
+    case Cache.get_and_refresh(:veil_sessions, unique_id) do
+      {:ok, {:ok, session}} ->
+        if is_nil(session) do
+          if session = Repo.get_by(Session, unique_id: unique_id) do
+            Cachex.put(:veil_sessions, unique_id, session)
+            {:ok, session}
+          else
+            {:error, :no_session_found}
+          end
         else
-          {:error, :no_session_found}
+          {:ok, session}
         end
-      end
-    else
-      error -> error
+
+      error ->
+        error
     end
   end
 
@@ -222,9 +224,8 @@ defmodule Wobbly.Veil do
   Deletes the session by unique id
   """
   def delete_session(unique_id) do
-    with {:ok, session} <- get_session(unique_id) do
-      delete(session)
-    else
+    case get_session(unique_id) do
+      {:ok, session} -> delete(session)
       error -> error
     end
   end

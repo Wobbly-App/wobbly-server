@@ -14,6 +14,7 @@ defmodule WobblyWeb.ChannelCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL.Sandbox
 
   using do
     quote do
@@ -26,10 +27,10 @@ defmodule WobblyWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Wobbly.Repo)
+    :ok = Sandbox.checkout(Wobbly.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Wobbly.Repo, {:shared, self()})
+      Sandbox.mode(Wobbly.Repo, {:shared, self()})
     end
 
     :ok

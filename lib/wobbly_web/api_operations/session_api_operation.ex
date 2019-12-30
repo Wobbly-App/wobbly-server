@@ -1,4 +1,7 @@
 defmodule WobblyWeb.ApiOperations.SessionApiOperation do
+  @moduledoc """
+  Session API operations for our OpenAPI schema.
+  """
   alias OpenApiSpex.Operation
   alias WobblyWeb.Schemas.{AuthResponse, Session, SessionCreate}
 
@@ -8,8 +11,8 @@ defmodule WobblyWeb.ApiOperations.SessionApiOperation do
     apply(__MODULE__, operation, [])
   end
 
-  @spec create_operation() :: Operation.t()
-  def create_operation() do
+  @spec create_operation :: Operation.t()
+  def create_operation do
     %Operation{
       tags: ["users"],
       summary: "Create a new session",
@@ -20,8 +23,8 @@ defmodule WobblyWeb.ApiOperations.SessionApiOperation do
     }
   end
 
-  @spec delete_operation() :: Operation.t()
-  def delete_operation() do
+  @spec delete_operation :: Operation.t()
+  def delete_operation do
     %Operation{
       tags: ["users"],
       summary: "Delete a session (i.e. sign out)",
@@ -31,7 +34,7 @@ defmodule WobblyWeb.ApiOperations.SessionApiOperation do
     }
   end
 
-  defp ok_response() do
+  defp ok_response do
     Operation.response("ok response", "application/json", AuthResponse)
   end
 end

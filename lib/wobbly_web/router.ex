@@ -30,7 +30,6 @@ defmodule WobblyWeb.Router do
 
   scope "/" do
     pipe_through :browser
-    # TODO: don't include in non-dev environments
     get "/swagger", OpenApiSpex.Plug.SwaggerUI, path: "/api/v1/openapi"
   end
 end

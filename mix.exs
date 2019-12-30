@@ -45,7 +45,9 @@ defmodule Wobbly.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:open_api_spex, "~> 3.5"},
       {:veil, "~> 0.2.3"},
-      {:excoveralls, "~> 0.12.1", only: :test}
+      {:excoveralls, "~> 0.12.1", only: :test},
+      {:husky, "~> 1.0", only: :dev, runtime: false},
+      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}
     ]
   end
 

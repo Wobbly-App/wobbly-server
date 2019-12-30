@@ -1,12 +1,15 @@
 defmodule WobblyWeb.ApiOperations.GroupApiOperation do
+  @moduledoc """
+  Group API operations for the OpenAPI schema.
+  """
   alias OpenApiSpex.Operation
 
   alias WobblyWeb.Schemas.{
     Group,
     GroupCreate,
+    GroupNameAndDescription,
     GroupResponse,
-    GroupsResponse,
-    GroupNameAndDescription
+    GroupsResponse
   }
 
   @spec open_api_operation(atom) :: Operation.t()
@@ -15,8 +18,8 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
     apply(__MODULE__, operation, [])
   end
 
-  @spec index_operation() :: Operation.t()
-  def index_operation() do
+  @spec index_operation :: Operation.t()
+  def index_operation do
     %Operation{
       tags: ["groups"],
       summary: "View the current user's groups",
@@ -26,8 +29,8 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
     }
   end
 
-  @spec create_operation() :: Operation.t()
-  def create_operation() do
+  @spec create_operation :: Operation.t()
+  def create_operation do
     %Operation{
       tags: ["groups"],
       summary: "Create a new group",
@@ -38,8 +41,8 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
     }
   end
 
-  @spec show_operation() :: Operation.t()
-  def show_operation() do
+  @spec show_operation :: Operation.t()
+  def show_operation do
     %Operation{
       tags: ["groups"],
       summary: "Get group details",
@@ -55,8 +58,8 @@ defmodule WobblyWeb.ApiOperations.GroupApiOperation do
     }
   end
 
-  @spec update_operation() :: Operation.t()
-  def update_operation() do
+  @spec update_operation :: Operation.t()
+  def update_operation do
     %Operation{
       tags: ["groups"],
       summary: "Update a group (that you are a member of)",

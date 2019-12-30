@@ -47,7 +47,8 @@ defmodule Wobbly.MixProject do
       {:veil, "~> 0.2.3"},
       {:excoveralls, "~> 0.12.1", only: :test},
       {:husky, "~> 1.0", only: :dev, runtime: false},
-      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.9.3", only: [:dev, :test]}
     ]
   end
 

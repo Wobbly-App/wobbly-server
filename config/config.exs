@@ -61,3 +61,8 @@ config :veil, WobblyWeb.Veil.Mailer,
   api_key: "foobar"
 
 # -- End Veil Configuration
+
+config :husky,
+  pre_commit: "mix format && mix credo --all --strict && mix sobelow --config",
+  pre_push:
+    "mix format --check-formatted && mix credo --all --strict && mix sobelow --config && mix test"

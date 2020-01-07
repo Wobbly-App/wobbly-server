@@ -39,3 +39,11 @@ client/
 
 # Sobelow
 .sobelow
+
+# Mnesia
+Mnesia.nonode@nohost/
+mnesiadb/
+
+# ejabberd log
+log/
+

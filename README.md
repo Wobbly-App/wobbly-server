@@ -10,8 +10,14 @@ Runs [ejabberd](https://www.ejabberd.im/), the XMPP server, with custom extensio
 
 We recommend using VS Code (this repo comes with a few recommended extensions), but it's optional.
 
+### Prerequisites - MacOS
+* `brew install elixir gd libyaml
+* (when getting dependencies you may have to prefix the `mix` command with `env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" `
+
+### Install and run
+
 * Install dependencies with `mix deps.get`
-* Start the server with `mix start`
+* Start the server with `iex -S mix`
 
 Now you can connect with an XMPP client.
 

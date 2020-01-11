@@ -24,6 +24,6 @@ RUN mix local.hex --force && \
     mix local.rebar --force && \
     mix deps.get
 
-RUN mix
+RUN mix compile
 
-CMD [ "iex", "-S", "mix"]
+ENTRYPOINT [ "iex", "-S", "mix"]

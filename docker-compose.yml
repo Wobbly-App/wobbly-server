@@ -10,5 +10,17 @@ services:
       - DB_NAME
     volumes:
       - pgdata:/var/lib/postgresql
+  server:
+    build:
+      context: .
+    ports:
+      - "5222:5222"
+      - "5280:5280"
+      - "5269:5269"
+      - "5443:5443"
+      - "1883:1883"
+      - "7777:7777"
+    stdin_open: true
+    tty: true
 volumes:
   pgdata:

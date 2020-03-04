@@ -22,7 +22,8 @@ defmodule Wobbly.MixProject do
   defp deps do
     [
       {:ejabberd, "~> 20.2"},
-      {:logger_lager_backend, "~> 0.2.0"}
+      {:logger_lager_backend, "~> 0.2.0"},
+      {:credo, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
 end

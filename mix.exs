@@ -28,7 +28,7 @@ defmodule Wobbly.MixProject do
       {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.10.1", only: :dev},
       {:excoveralls, "~> 0.12.1", only: :test},
-      {:husky, "~> 1.0", only: :dev, runtime: false},
+      {:husky, "~> 1.0", only: :dev, runtime: false}
     ]
   end
 end

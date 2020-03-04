@@ -23,7 +23,8 @@ defmodule Wobbly.MixProject do
     [
       {:ejabberd, "~> 20.2"},
       {:logger_lager_backend, "~> 0.2.0"},
-      {:credo, "~> 1.2", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.10.1", only: :dev}
     ]
   end
 end

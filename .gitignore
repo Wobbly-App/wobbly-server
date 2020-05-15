@@ -1,20 +1,43 @@
 # The directory Mix will write compiled artifacts to.
 _build/
 
-# If you run "mix test --cover", coverage assets end up here.
-cover/
+# Created by https://www.gitignore.io/api/visualstudiocode,linux,elixir,phoenix
+# Edit at https://www.gitignore.io/?templates=visualstudiocode,linux,elixir,phoenix
 
-# The directory Mix downloads your dependencies sources to.
-deps/
-
-# Where 3rd-party dependencies like ExDoc output generated docs.
-doc/
-
-# Ignore .fetch files in case you like to edit your project deps locally.
-.fetch
-
-# If the VM crashes, it generates a dump, let's ignore it too.
+### Elixir ###
+/_build
+/cover
+/deps
+/doc
+/.fetch
 erl_crash.dump
+*.ez
+*.beam
+/config/*.secret.exs
+.elixir_ls/
+
+### Elixir Patch ###
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### Phoenix ###
+# gitignore template for Phoenix projects
+# website: http://www.phoenixframework.org/
+#
+# Recommended template: Elixir.gitignore
 
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
@@ -30,9 +53,18 @@ wobbly-*.tar
 # ElixirLS files
 .elixir_ls
 
-# The generated OpenAPI spec and client
-spec.json
-client/
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/visualstudiocode,linux,elixir,phoenix
 
 # Secrets
 .env
@@ -40,10 +72,5 @@ client/
 # Sobelow
 .sobelow
 
-# Mnesia
-Mnesia.nonode@nohost/
-mnesiadb/
-
-# ejabberd log
-log/
-
+# Ignore package tarball (built via "mix hex.build").
+wobbly-*.tar

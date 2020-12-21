@@ -21,7 +21,7 @@ defmodule Wobbly.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ejabberd, "~> 19.9"},
+      {:ejabberd, "~> 20.12"},
       {:logger_lager_backend, "~> 0.2.0"}
     ]
   end
